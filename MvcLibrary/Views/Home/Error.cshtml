@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Error</h1>
+    @if (TempData["ErrorMessage"] is string errorMessage)
+    {
+        <div class="alert alert-danger" role="alert">
+            @errorMessage
+        </div>
+    }
+    <p>An error has occurred while processing your request.</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Go Back to Home</a>
+</div>

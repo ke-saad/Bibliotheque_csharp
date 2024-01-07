@@ -1,0 +1,19 @@
+@model MvcLibrary.Models.LoginViewModel
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <a asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

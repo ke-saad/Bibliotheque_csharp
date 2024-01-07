@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Online Library !</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Welcome back, @ViewData["FullName"]!</p>
+        <img src="~/Images/library.png" alt="Library Image" style="width: 500px; height: 300px;" />
+        <p><a class="btn btn-primary" asp-controller="Book" asp-action="Books">View Books</a></p>
+    }
+    else
+    {
+        <p>Here you will be able to view and reserve books.</p>
+        <p>
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+            <a class="btn btn-secondary" asp-controller="Account" asp-action="Register">Register</a>
+        </p>
+    }
+    
+
+</div>

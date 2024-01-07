@@ -1,0 +1,99 @@
+-- Creating AspNetRoles table
+CREATE TABLE AspNetRoles (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(256),
+    NormalizedName NVARCHAR(256),
+    ConcurrencyStamp NVARCHAR(MAX)
+);
+
+-- Creating AspNetUsers table
+CREATE TABLE AspNetUsers (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Semester NVARCHAR(50) NOT NULL,
+    Department NVARCHAR(50) NOT NULL,
+    FullName NVARCHAR(100) NOT NULL,
+    ResetPasswordToken NVARCHAR(100),
+    UserName NVARCHAR(256),
+    NormalizedUserName NVARCHAR(256),
+    Email NVARCHAR(256),
+    NormalizedEmail NVARCHAR(256),
+    EmailConfirmed BIT NOT NULL,
+    PasswordHash NVARCHAR(MAX),
+    SecurityStamp NVARCHAR(MAX),
+    ConcurrencyStamp NVARCHAR(MAX),
+    PhoneNumber NVARCHAR(MAX),
+    PhoneNumberConfirmed BIT NOT NULL,
+    TwoFactorEnabled BIT NOT NULL,
+    LockoutEnd DATETIMEOFFSET,
+    LockoutEnabled BIT NOT NULL,
+    AccessFailedCount INT NOT NULL
+);
+
+-- Creating Books table
+CREATE TABLE Books (
+    BookID INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(100),
+    Author NVARCHAR(100),
+    ISBN NVARCHAR(20),
+    PublicationYear INT,
+    AvailableCopies INT
+);
+
+-- Creating AspNetRoleClaims table
+CREATE TABLE AspNetRoleClaims (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    RoleId INT NOT NULL FOREIGN KEY REFERENCES AspNetRoles(Id),
+    ClaimType NVARCHAR(MAX),
+    ClaimValue NVARCHAR(MAX)
+);
+
+-- Creating AspNetUserClaims table
+CREATE TABLE AspNetUserClaims (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    UserId INT NOT NULL FOREIGN KEY REFERENCES AspNetUsers(Id),
+    ClaimType NVARCHAR(MAX),
+    ClaimValue NVARCHAR(MAX)
+);
+
+-- Creating AspNetUserLogins table
+CREATE TABLE AspNetUserLogins (
+    LoginProvider NVARCHAR(450),
+    ProviderKey NVARCHAR(450),
+    ProviderDisplayName NVARCHAR(MAX),
+    UserId INT NOT NULL FOREIGN KEY REFERENCES AspNetUsers(Id),
+    PRIMARY KEY (LoginProvider, ProviderKey)
+);
+
+-- Creating AspNetUserRoles table
+CREATE TABLE AspNetUserRoles (
+    UserId INT NOT NULL,
+    RoleId INT NOT NULL,
+    PRIMARY KEY (UserId, RoleId),
+    FOREIGN KEY (UserId) REFERENCES AspNetUsers(Id),
+    FOREIGN KEY (RoleId) REFERENCES AspNetRoles(Id)
+);
+
+-- Creating AspNetUserTokens table
+CREATE TABLE AspNetUserTokens (
+    UserId INT NOT NULL,
+    LoginProvider NVARCHAR(450),
+    Name NVARCHAR(450),
+    Value NVARCHAR(MAX),
+    PRIMARY KEY (UserId, LoginProvider, Name),
+    FOREIGN KEY (UserId) REFERENCES AspNetUsers(Id)
+);
+
+-- Creating Reservations table
+CREATE TABLE Reservations (
+    ReservationId INT IDENTITY(1,1) PRIMARY KEY,
+    UserId INT NOT NULL FOREIGN KEY REFERENCES AspNetUsers(Id),
+    BookID INT FOREIGN KEY REFERENCES Books(BookID),
+    ReservationDate DATETIME2,
+    DueDate DATETIME2,
+    ReturnDate DATETIME2
+);
+
+-- Creating Indexes
+CREATE INDEX RoleNameIndex ON AspNetRoles (NormalizedName) WHERE NormalizedName IS NOT NULL;
+CREATE INDEX EmailIndex ON AspNetUsers (NormalizedEmail);
+CREATE INDEX UserNameIndex ON AspNetUsers (NormalizedUserName) WHERE NormalizedUserName IS NOT NULL;

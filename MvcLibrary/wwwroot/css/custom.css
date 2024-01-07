@@ -1,0 +1,54 @@
+/* wwwroot/css/custom.css */
+
+/* Body and background styles */
+body {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+}
+
+/* Navbar styles */
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+    color: #000000; /* Black text for navbar links */
+}
+
+/* Navbar background */
+.navbar-light {
+    background-color: #3498db; /* Blue background for the navbar */
+}
+
+/* Navbar active link */
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ffffff; /* White text for active/hovered navbar links */
+}
+
+/* Footer styles */
+.footer {
+    background-color: #000000; /* Black background for the footer */
+    color: #ffffff; /* White text for the footer */
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #3498db; /* Blue background for primary buttons */
+    border-color: #3498db; /* Blue border color for primary buttons */
+    color: #ffffff; /* White text for primary buttons */
+}
+
+.btn-primary:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    border-color: #2980b9;
+}
+
+/* Table styles */
+.table {
+    background-color: #ffffff; /* White background for tables */
+    color: #000000; /* Black text for table content */
+}
+
+/* Table header styles */
+.table thead {
+    background-color: #333333; /* Dark gray background for table header */
+    color: #ffffff; /* White text for table header */
+}

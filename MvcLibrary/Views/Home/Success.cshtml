@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Success";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Success!</h1>
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="alert alert-success" role="alert">
+            @successMessage
+        </div>
+    }
+    <p>Your operation was completed successfully.</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Go Back to Home</a>
+</div>
